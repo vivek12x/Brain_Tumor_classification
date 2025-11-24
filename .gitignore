@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+models/
+*.pth
+*.pt
+*.h5
+*.ckpt
+*.nii
+*.nii.gz
