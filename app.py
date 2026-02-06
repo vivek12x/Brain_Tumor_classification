@@ -16,10 +16,10 @@ BASE_DIR = Path(__file__).parent
 MODEL_PATH = BASE_DIR / "models" / "best_effnet_b3.pth"
 
 # 🛑 1. Prediction Folder (Goal 2)
-PREDICTION_ROOT_FOLDER = Path(r"E:\KaggleShi\BT\BraTS\Processed\00028\Everything")
+PREDICTION_ROOT_FOLDER = BASE_DIR / "PredictFolder"
 
 # 🖼️ 2. Display Folder (Goal 3)
-DISPLAY_IMAGE_ROOT_FOLDER = Path(r"E:\KaggleShi\BT\BraTS\Processed\00028\Everything\X")
+DISPLAY_IMAGE_ROOT_FOLDER = BASE_DIR / "PredictFolder"
 
 IMG_SIZE = 300
 MAX_DETAIL_THUMBNAILS = 8 
