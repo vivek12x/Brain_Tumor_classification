@@ -1,4 +1,4 @@
-#Brain Tumor Classification
+# Brain Tumor Classification using EfficientNet B3
 This project implements an MRI image classification pipeline for detecting brain tumors.  
 The model classifies images into four categories:
 
