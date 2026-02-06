@@ -8,13 +8,14 @@ This project implements a complete image classification pipeline for MRI-based b
 
 The workflow includes training, saving the best model, and making predictions for individual images or full folders of MRI scans.
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 ### Step 1: Install Dependencies
 
 Ensure you have Python 3.8+ installed. Then install all required packages:
 
 ```bash
+
 pip install -r requirements.txt
 Note: If you wish to use GPU acceleration, ensure you have the appropriate version of PyTorch installed for your system (CUDA support).
 
