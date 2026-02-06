@@ -1,41 +1,41 @@
-# Brain_Tumor_classification
-This project implements a complete image classification pipeline for MRI-based brain tumor detection. The model classifies images into four categories:
+#Brain Tumor Classification
+This project implements an MRI image classification pipeline for detecting brain tumors.  
+The model classifies images into four categories:
 
-- **glioma**
-- **meningioma**
-- **pituitary**
-- **no_tumor**
+- glioma  
+- meningioma  
+- pituitary  
+- no_tumor  
 
-The workflow includes training, saving the best model, and making predictions for individual images or full folders of MRI scans.
+The workflow includes training, saving the best model, and predicting tumor type from images or folders.
 
-## Quick Start Guide
+---
 
-### Step 1: Install Dependencies
+## Quick Start
 
-Ensure you have Python 3.8+ installed. Then install all required packages:
+### 1. Install Dependencies
+
+Ensure Python 3.8+ is installed, then run:
 
 ```bash
-
 pip install -r requirements.txt
-Note: If you wish to use GPU acceleration, ensure you have the appropriate version of PyTorch installed for your system (CUDA support).
+If PyTorch installation fails:
 
-Step 2: Setup Project Structure
-Run the setup script to create all necessary directories:
-
-Bash
+pip install torch torchvision
+2. Setup Project Structure
 python setup_project.py
-This will create:
+This creates:
 
-models/ - for storing trained model weights
+models/ – trained model weights
 
-Training/ - for training images
+Training/ – training images
 
-Testing/ - for validation images
+Testing/ – validation images
 
-PredictFolder/ - for images you want to classify
+PredictFolder/ – images for prediction
 
-Step 3: Prepare Your Data
-Organize your MRI images into the following structure:
+3. Prepare Dataset
+Project folder structure:
 
 Brain-Tumor-Detection-and-Classification/
 ├── Training/
@@ -49,105 +49,97 @@ Brain-Tumor-Detection-and-Classification/
 │   ├── no_tumor/
 │   └── pituitary/
 └── PredictFolder/
-    ├── patient_scan1.jpg
-    └── ...
-Important Notes:
+Notes
 
-Class folders must be named exactly: glioma, meningioma, pituitary, no_tumor
+Folder names must exactly match the class names above.
 
-Supported image formats: .jpg, .jpeg, .png, .bmp
+Supported formats: .jpg, .jpeg, .png, .bmp.
 
-Step 4: Train the Model
-Once your data is organized, train the model:
-
-Bash
+4. Train the Model
 python train.py
-Details:
+Training configuration
 
-Uses EfficientNet B3 architecture
+Architecture: EfficientNet-B3
 
-Default: 10 epochs (modifiable in train.py)
+Epochs: 10
 
-Automatically saves the best model to models/best_effnet_b3.pth
+Batch size: 16
 
-Uses GPU if available, otherwise falls back to CPU
+Best model saved to:
 
-Step 5: Make Predictions
-Option A: Command Line Prediction
-Place MRI images inside the PredictFolder/ directory, then run:
-
-Bash
+models/best_effnet_b3.pth
+5. Make Predictions
+Command-line prediction
 python predict.py
-The script will analyze all images and provide a final diagnosis summary based on the majority vote of tumor types found.
+The script analyzes all images in PredictFolder and outputs the most likely tumor type.
 
-Option B: Streamlit Web Application
-Launch the interactive web application:
-
-Bash
+Streamlit Web App
 streamlit run app.py
-This interface provides:
+Provides:
 
-Patient Overview: Diagnosis verdict and confidence
+Diagnosis summary
 
-GradCAM Visualization: Visual explanations of where the model is looking
+Image-wise predictions
 
-Detailed Analysis: Per-image probabilities
+GradCAM visual explanation
 
-##Project Structure
+Project Structure
 Brain-Tumor-Detection-and-Classification/
-├── app.py                  # Streamlit web application
-├── model.py                # EfficientNet B3 model definition
-├── train.py                # Training script
-├── predict.py              # Command-line prediction script
-├── gradcam.py              # GradCAM visualization utilities
-├── viz_utils.py            # Visualization helper functions
-├── setup_project.py        # Project setup script
-├── requirements.txt        # Python dependencies
-├── README.md               # Project documentation
-├── models/                 # Trained model weights
-├── Training/               # Training dataset
-├── Testing/                # Validation dataset
-└── PredictFolder/          # Images for prediction
-##Configuration
-You can modify these parameters in the respective files:
-
+├── app.py
+├── model.py
+├── train.py
+├── predict.py
+├── gradcam.py
+├── viz_utils.py
+├── setup_project.py
+├── requirements.txt
+├── README.md
+├── models/
+├── Training/
+├── Testing/
+└── PredictFolder/
+Configuration Parameters
 train.py
-
-Python
-BATCH_SIZE = 16          # Adjust based on memory
-LEARNING_RATE = 0.001    # Learning rate for optimizer
-EPOCHS = 10              # Number of training epochs
-IMG_SIZE = 300           # Image resize dimension
+BATCH_SIZE = 16
+LEARNING_RATE = 0.001
+EPOCHS = 10
+IMG_SIZE = 300
 app.py
+IMG_SIZE = 300
+MAX_DETAIL_THUMBNAILS = 8
+Minimum Requirements
+Python 3.8+
 
-Python
-IMG_SIZE = 300           # Image processing size
-##System Requirements
-Python: 3.8 or higher
+8 GB RAM
 
-RAM: 8GB minimum recommended
+CPU support for training and prediction
 
-Compute: CPU is supported, but a GPU is recommended for faster training.
+Troubleshooting
+Model not found
 
-## Troubleshooting
-"Model file not found": Run python train.py to generate the model file first.
+python train.py
+No images in prediction folder
 
-"No images found": Add MRI images to the PredictFolder/ directory.
+Add images to PredictFolder/.
 
-"CUDA out of memory": Reduce BATCH_SIZE in train.py (try 8 or 4).
+Torch not installed
 
-Import Errors: Ensure all dependencies are installed via pip install -r requirements.txt.
+pip install torch torchvision
+Model Information
+Architecture: EfficientNet-B3 (pretrained on ImageNet)
 
-## Model Details
-Architecture: EfficientNet B3
+Input size: 300 × 300 RGB
 
-Input: 300x300 RGB images
-
-Output: 4 classes (glioma, meningioma, no_tumor, pituitary)
-
-Loss Function: CrossEntropyLoss
+Output: 4 tumor classes
 
 Optimizer: Adam
 
-##License
-This project is for educational and research purposes.
+Loss: CrossEntropyLoss
+
+Workflow Summary
+python setup_project.py
+pip install -r requirements.txt
+python train.py
+python predict.py
+License
+For educational and research use only.
